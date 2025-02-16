@@ -19,7 +19,7 @@ jobs:
 
       - name: Add Upstream Repository
         run: |
-          git remote add mangayomi https://github.com/itsmechinmoy/dartotsu-extensions.git
+          git remote add mangayomi https://github.com/gato404/kegareta-sauces.git
           git fetch mangayomi
 
       - name: Sync JavaScript Folder
