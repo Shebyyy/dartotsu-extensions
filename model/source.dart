@@ -110,5 +110,5 @@ class Source {
 }
 
 const branchName = "main";
-
+const repo  = "Shebyyy/dartotsu-extensions";
 enum ItemType { manga, anime, novel }
