@@ -19,19 +19,19 @@ jobs:
 
       - name: Add Upstream Repository
         run: |
-          git remote add mangayomi https://github.com/gato404/kegareta-sauces.git
+          git remote add mangayomi https://github.com/kodjodevf/mangayomi-extensions.git
           git fetch mangayomi
 
       - name: Sync JavaScript Folder
         run: |
           git checkout mangayomi/main -- javascript
           git add javascript
-          git commit -m "Automated sync: Updated javascript folder from Mangayomi"
+          git commit -m "Sync: Update from source repository" || echo "No changes to commit"
           git push origin main
 
       - name: Sync Dart Folder
         run: |
           git checkout mangayomi/main -- dart
           git add dart
-          git commit -m "Automated sync: Updated dart folder from Mangayomi"
+          git commit -m "Sync: Update from source repository" || echo "No changes to commit"
           git push origin main
