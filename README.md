@@ -1,4 +1,4 @@
-# Mangayomi Extensions
+# Dartotsu & Anymex Extensions
 
 This repository contains the available extension catalogues for the Mangayomi app.
 
