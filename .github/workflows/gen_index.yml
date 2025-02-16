@@ -1,4 +1,4 @@
-name: Generate json index
+name: Generate json index 
 
 on:
   push:
