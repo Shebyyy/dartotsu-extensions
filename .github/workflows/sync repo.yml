@@ -4,48 +4,31 @@ on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
   workflow_dispatch:  # Allows manual trigger
-  
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Your Repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Ensure full history
-
-      - name: Add Upstream Repository
-        run: |
-          git remote add mangayomi https://github.com/kodjodevf/mangayomi-extensions.git || true
-          git fetch mangayomi
-
-      - name: Checkout JavaScript & Dart Folders
-        run: |
-          git checkout mangayomi/main -- javascript dart
 
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@users.noreply.github.com"
-
-      - name: Filter and Sync Only NSFW Subfolders
+      - name: Add Upstream Repository
         run: |
-          mkdir -p filtered_folders
-          
-          # Find all files containing "isNsfw: _isNsfw," or '"isNsfw": true,'
-          grep -rlE 'isNsfw: _isNsfw,|"isNsfw": true,' javascript dart | while read file; do
-            subfolder=$(dirname "$file")  # Get the parent folder
-            mkdir -p "filtered_folders/$subfolder"
-            cp -r "$subfolder" "filtered_folders/$(dirname "$subfolder")"
-          done
-
-          # Replace the original directories with filtered folders
-          rm -rf javascript dart
-          mv filtered_folders/javascript filtered_folders/dart . 2>/dev/null || true
-
-      - name: Commit and Push Only NSFW Subfolders
+          git remote add mangayomi https://github.com/kodjodevf/mangayomi-extensions.git
+          git fetch mangayomi
+      - name: Sync JavaScript Folder
         run: |
-          git add javascript dart
-          git commit -m "Synced only NSFW subfolders from Mangayomi" || echo "No changes to commit"
+          git checkout mangayomi/main -- javascript
+          git add javascript
+          git commit -m "Sync: Update from source repository" || echo "No changes to commit"
           git push origin main
-
+      - name: Sync Dart Folder
+        run: |
+          git checkout mangayomi/main -- dart
+          git add dart
+          git commit -m "Sync: Update from source repository" || echo "No changes to commit"
+          git push origin main
