@@ -23,6 +23,11 @@ jobs:
         run: |
           git checkout mangayomi/main -- javascript dart
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@users.noreply.github.com"
+
       - name: Filter and Sync Only NSFW Subfolders
         run: |
           mkdir -p filtered_folders
