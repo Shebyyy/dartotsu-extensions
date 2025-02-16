@@ -80,7 +80,7 @@ List<Source> _searchJsSources(Directory dir) {
                 ..appMinVerReq =
                     sourceJson["appMinVerReq"] ?? defaultSource.appMinVerReq
                 ..sourceCodeUrl =
-                    "https://raw.githubusercontent.com/Shebyyy/dartotsu-extensions/main/javascript/${sourceJson["pkgPath"] ?? sourceJson["pkgName"]}";
+                    "https://raw.githubusercontent.com/Shebyyy/dartotsu-extensions/javascript/${sourceJson["pkgPath"] ?? sourceJson["pkgName"]}";
               if (sourceJson["id"] != null) {
                 source = source..id = int.tryParse("${sourceJson["id"]}");
               }
