@@ -7,17 +7,17 @@ just paste them into your:
 
 manga repo 
 ```
-https://Shebyyy.github.io/mangayomi-extensions/index.json
+https://Shebyyy.github.io/dartotsu-extensions/index.json
 ```
 
 anime repo 
 ```
-https://Shebyyy.github.io/mangayomi-extensions/anime_index.json
+https://Shebyyy.github.io/dartotsu-extensions/anime_index.json
 ```
 
 novel repo 
 ```
-https://Shebyyy.github.io/mangayomi-extensions/novel_index.json
+https://Shebyyy.github.io/dartotsu-extensions/novel_index.json
 ```
 
 # Contributing
