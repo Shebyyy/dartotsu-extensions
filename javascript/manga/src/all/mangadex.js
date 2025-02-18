@@ -1,59 +1,59 @@
-const mangayomiSources = [{
-    "name": "MangaDex",
+const kegaretaSauces = [{
+    "name": "MangaDex (unlocked)",
     "langs": ["ar", "bn", "bg", "my", "ca", "zh", "zh-hk", "cs", "da", "nl", "en", "tl", "fi", "fr", "de", "el", "he", "hi", "hu", "id", "it", "ja", "kk", "ko", "la", "lt", "ms", "mn", "ne", "no", "fa", "pl", "pt-br", "pt", "ro", "ru", "sh", "es-419", "es", "sv", "ta", "th", "tr", "uk", "vi"],
     "ids": {
-        "ar": 202373705,
-        "bn": 860658373,
-        "bg": 722270529,
-        "my": 978675083,
-        "ca": 689496451,
-        "zh": 593575397,
-        "zh-hk": 115179159,
-        "cs": 869144666,
-        "da": 846142909,
-        "nl": 841149659,
-        "en": 810342358,
-        "tl": 309024312,
-        "fi": 164642544,
-        "fr": 545017689,
-        "de": 110023605,
-        "el": 767687578,
-        "he": 511907642,
-        "hi": 986826068,
-        "hu": 128441350,
-        "id": 183977130,
-        "it": 127887438,
-        "ja": 204112007,
-        "kk": 1063442064,
-        "ko": 898061477,
-        "la": 387646759,
-        "lt": 270482698,
-        "ms": 284400542,
-        "mn": 525041874,
-        "ne": 613632949,
-        "no": 441032670,
-        "fa": 693311514,
-        "pl": 683661227,
-        "pt-br": 417850874,
-        "pt": 1027115198,
-        "ro": 399589398,
-        "ru": 367421943,
-        "sh": 254140838,
-        "es-419": 823535267,
-        "es": 736630443,
-        "sv": 146351677,
-        "ta": 739930809,
-        "th": 385031783,
-        "tr": 1008587213,
-        "uk": 778357609,
-        "vi": 88174952
+        "ar": 202373706,
+        "bn": 860658374,
+        "bg": 722270530,
+        "my": 978675084,
+        "ca": 689496452,
+        "zh": 593575398,
+        "zh-hk": 115179160,
+        "cs": 869144667,
+        "da": 846142910,
+        "nl": 841149660,
+        "en": 810342359,
+        "tl": 309024313,
+        "fi": 164642545,
+        "fr": 545017690,
+        "de": 110023606,
+        "el": 767687579,
+        "he": 511907643,
+        "hi": 986826069,
+        "hu": 128441351,
+        "id": 183977131,
+        "it": 127887439,
+        "ja": 204112008,
+        "kk": 1063442065,
+        "ko": 898061478,
+        "la": 387646760,
+        "lt": 270482699,
+        "ms": 284400543,
+        "mn": 525041875,
+        "ne": 613632950,
+        "no": 441032671,
+        "fa": 693311515,
+        "pl": 683661228,
+        "pt-br": 417850875,
+        "pt": 1027115199,
+        "ro": 399589399,
+        "ru": 367421944,
+        "sh": 254140839,
+        "es-419": 823535268,
+        "es": 736630444,
+        "sv": 146351678,
+        "ta": 739930810,
+        "th": 385031784,
+        "tr": 1008587214,
+        "uk": 778357610,
+        "vi": 88174953
     },
     "baseUrl": "https://mangadex.org",
     "apiUrl": "https://api.mangadex.org",
-    "iconUrl": "https://raw.githubusercontent.com/kodjodevf/mangayomi-extensions/main/javascript/icon/all.mangadex.png",
+    "iconUrl": "https://raw.githubusercontent.com/gato404/kegareta-sauces/main/javascript/icon/all.mangadex.png",
     "typeSource": "single",
     "itemType": 0,
-    "version": "0.1.4",
+    "version": "0.0.1",
     "pkgPath": "manga/src/all/mangadex.js"
 }];
 
@@ -69,7 +69,7 @@ class DefaultExtension extends MProvider {
     }
     async getPopular(page) {
         const offset = 20 * (page - 1);
-        const url = `${this.source.apiUrl}/manga?limit=20&offset=${offset}&availableTranslatedLanguage[]=${this.source.lang}&includes[]=cover_art&contentRating[]=safe&contentRating[]=suggestive${this.preferenceOriginalLanguages()}&order[followedCount]=desc`;
+        const url = `${this.source.apiUrl}/manga?limit=20&offset=${offset}&availableTranslatedLanguage[]=${this.source.lang}&includes[]=cover_art${this.preferenceOriginalLanguages()}&order[followedCount]=desc`;
         const response = await this.client.get(url, this.getHeaders());
         return this.mangaRes(response.body);
     }
@@ -86,7 +86,7 @@ class DefaultExtension extends MProvider {
             )
         );
         const mangaIdss = mangaIds.map(id => `&ids[]=${id}`).join("");
-        const newUrl = `${this.source.apiUrl}/manga?includes[]=cover_art&limit=${mangaIds.length}&contentRating[]=safe&contentRating[]=suggestive${this.preferenceOriginalLanguages()}${mangaIdss}`;
+        const newUrl = `${this.source.apiUrl}/manga?includes[]=cover_art&limit=${mangaIds.length}${this.preferenceOriginalLanguages()}${mangaIdss}`;
         const newResponse = await this.client.get(newUrl, this.getHeaders());
         return this.mangaRes(newResponse.body);
     }
@@ -185,7 +185,7 @@ class DefaultExtension extends MProvider {
         let hasMoreResults = true;
 
         while (hasMoreResults) {
-            const url = `${this.source.apiUrl}/manga/${mangaId}/feed?limit=500&offset=${offset}&includes[]=user&includes[]=scanlation_group&order[volume]=desc&order[chapter]=desc&translatedLanguage[]=${lang}&includeFuturePublishAt=0&includeEmptyPages=0&contentRating[]=safe&contentRating[]=suggestive`;
+            const url = `${this.source.apiUrl}/manga/${mangaId}/feed?limit=500&offset=${offset}&includes[]=user&includes[]=scanlation_group&order[volume]=desc&order[chapter]=desc&translatedLanguage[]=${lang}&includeFuturePublishAt=0&includeEmptyPages=0`;
             const res = await this.client.get(url, this.getHeaders());
             const paginatedData = JSON.parse(res.body);
             const limit = paginatedData?.limit ?? 0;
@@ -364,7 +364,9 @@ class DefaultExtension extends MProvider {
                 name: "Content rating",
                 state: [
                     ["Safe", "contentRating[]=safe"],
-                    ["Suggestive", "contentRating[]=suggestive"]
+                    ["Suggestive", "contentRating[]=suggestive"],
+                    ["Erotica", "contentRating[]=erotica"],
+                    ["Pornographic", "contentRating[]=pornographic"]
                 ].map(x => ({ type_name: 'CheckBox', name: x[0], value: x[1], state: true }))
             },
             {
