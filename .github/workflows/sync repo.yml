@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout Your Repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Ensure full history
 
       - name: Configure Git
         run: |
@@ -21,51 +19,23 @@ jobs:
 
       - name: Add Upstream Repository
         run: |
-          git remote add mangayomi https://github.com/kodjodevf/mangayomi-extensions.git || true
+          git remote add mangayomi https://github.com/kodjodevf/mangayomi-extensions.git
           git fetch mangayomi
 
-      - name: Sync JavaScript Folder (Update or Add)
+      - name: Sync JavaScript folder
         run: |
-          git checkout mangayomi/main -- javascript
-          
-          # Loop through all files in javascript folder
-          for file in $(find javascript -type f); do
-            if [[ -f "$file" ]]; then
-              # If file exists, check for differences
-              if ! git diff --quiet HEAD -- "$file"; then
-                echo "Updating: $file"
-                git checkout mangayomi/main -- "$file"
-              fi
-            else
-              # If file does not exist, add it
-              echo "Adding new file: $file"
-              git checkout mangayomi/main -- "$file"
-            fi
-          done
-          
-          git add javascript
-          git commit -m "Sync: Updated/Added files in JavaScript" || echo "No changes to commit"
-          git push origin main
+           git fetch origin
+           git checkout mangayomi/main -- javascript
+           git add javascript
+           git commit -m "Automated sync: Updated javascript folder from Mangayomi" || echo "No changes to commit"
+           git push origin main
+           
 
-      - name: Sync Dart Folder (Update or Add)
+      - name: Sync Dart Folder
         run: |
           git checkout mangayomi/main -- dart
-          
-          # Loop through all files in dart folder
-          for file in $(find dart -type f); do
-            if [[ -f "$file" ]]; then
-              # If file exists, check for differences
-              if ! git diff --quiet HEAD -- "$file"; then
-                echo "Updating: $file"
-                git checkout mangayomi/main -- "$file"
-              fi
-            else
-              # If file does not exist, add it
-              echo "Adding new file: $file"
-              git checkout mangayomi/main -- "$file"
-            fi
-          done
-          
           git add dart
-          git commit -m "Sync: Updated/Added files in Dart" || echo "No changes to commit"
-          git push origin main
+          git commit -m "Automated sync: Updated dart folder from Mangayomi" || echo "No changes to commit"
+           git push origin main
+          
+          
