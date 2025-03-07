@@ -1,19 +1,17 @@
-const mangayomiSources = [
-	{
-		"name": "PelisXPorno",
-		"lang": "all",
-		"baseUrl": "https://www.pelisxporno.net",
-		"apiUrl": "",
-		"iconUrl": "https://www.pelisxporno.net/wp-content/uploads/2022/11/favicon.png",
-		"typeSource": "single",
-		"itemType": 1,
-		"isNsfw": true,
-		"version": "0.0.1",
-		"dateFormat": "",
-		"dateFormatLocale": "",
-		"pkgName": "anime/src/all/pelisxporno.js"
-	}
-];
+const mangayomiSources = [{
+"name": "PelisXPorno",
+"lang": "all",
+"baseUrl": "https://www.pelisxporno.net",
+"apiUrl": "",
+"iconUrl": "https://www.pelisxporno.net/wp-content/uploads/2022/11/favicon.png",
+"typeSource": "single",
+"itemType": 1,
+"isNsfw": true,
+"version": "0.0.1",
+"dateFormat": "",
+"dateFormatLocale": "",
+"pkgName": "anime/src/all/pelisxporno.js"
+}];
 
 class DefaultExtension extends MProvider {
 	async requestPlus(url) {
