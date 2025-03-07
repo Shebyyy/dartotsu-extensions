@@ -28,5 +28,5 @@ jobs:
           git add index.json
           git add anime_index.json
           git add novel_index.json
-          git commit -m "Update extensions"
+          git commit -m "Update extensions" || echo "No changes to commit"
           git push origin main --force
