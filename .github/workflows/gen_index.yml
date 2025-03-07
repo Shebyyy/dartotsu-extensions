@@ -1,13 +1,9 @@
-name: Generate JSON Index
+name: Generate json index
 
 on:
   push:
     branches:
-      - main  # Trigger when anything is pushed to main
-  workflow_run:
-    workflows: ["Sync Mangayomi Extensions"]  # Trigger after Sync Mangayomi Extensions completes
-    types:
-      - completed  
+      - main
 
 jobs:
   build:
